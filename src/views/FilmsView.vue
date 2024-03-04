@@ -23,7 +23,7 @@ const router = useRouter()
 
 const { result, loading, error } = useQuery(ALL_MOVIES)
 
-const movies: IFilm[] = computed(() => result.value?.allFilms.films ?? [])
+const movies = computed((): IFilm[] => result.value?.allFilms.films ?? [])
 
 const goToCrawl = (id: string): void => {
   router.push({ name: 'crawl', params: { id: id }})

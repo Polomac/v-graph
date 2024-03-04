@@ -12,6 +12,7 @@ export interface IFilm {
   title: string
   director: string
   releaseDate: string
+  id: string
   speciesConnection: {
     species: ISpecie[]
   }

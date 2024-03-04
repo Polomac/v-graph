@@ -24,13 +24,12 @@ import { useQuery } from '@vue/apollo-composable'
 import { computed } from 'vue'
 import { CRAWL } from '@/queries/CrawlQuery'
 import Loader from '@/components/Loader.vue'
-import gql from 'graphql-tag'
 
 const route = useRoute()
 const router = useRouter()
 
 const { result, loading, error } = useQuery(CRAWL(route.params.id))
-const crawl: string  = computed(() => result.value?.film.openingCrawl ?? '')
+const crawl  = computed((): string => result.value?.film.openingCrawl ?? '')
 
 const back = () => {
   router.push({ name: 'movies' })
