@@ -2,6 +2,7 @@
   <el-scrollbar height="90vh">
     <main class="wrapper">
       <h1>Movies</h1>
+      <div v-if="error">{{ error }} </div>
       <Loader v-if="isFetching" :loading="isFetching" />
       <div class="movie-card" v-for="movie in  movies" :key="movie.id" @click="goToCrawl(movie.id)">
         <span><em>Title:</em> <h3 style="display: inline;">{{ movie.title }}</h3></span>
@@ -13,19 +14,22 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { type IFilm, ALL_MOVIES } from '@/queries/MoviesQuery'
 import Loader from '@/components/Loader.vue'
 import { useRouter } from 'vue-router'
 import { useQuery } from 'villus';
 
 const router = useRouter()
+
+const error = ref<any>(null)
+
 const { data, isFetching, onError } = useQuery({
   query: ALL_MOVIES
 })
 
-onError(error => {
-  console.log(error)
+onError(err => {
+  error.value = err
 })
 
 const movies = computed((): IFilm[] => data.value?.allFilms.films ?? [])

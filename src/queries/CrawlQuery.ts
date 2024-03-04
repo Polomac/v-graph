@@ -1,6 +1,6 @@
-export const CRAWL = (id = 1) => `
-  query {
-    film(id: "${id}") {
-      openingCrawl
-    }
-  }`
+export const CRAWL = `
+query Crawl($filmId: ID) {
+  film(id: $filmId) {
+    openingCrawl
+  }
+}`
