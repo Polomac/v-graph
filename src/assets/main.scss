@@ -1,0 +1,41 @@
+@import './base.scss';
+@import './variables.scss';
+
+#app {
+  max-width: 1024px;
+  margin: 0 auto;
+  font-weight: normal;
+
+  .wrapper {
+    padding: 10px;
+  }
+
+  a, a:visited, a:hover {
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s linear;
+  }
+
+  .el-scrollbar {
+    margin-top: 50px;
+    padding-right: 0;
+    width: 100%;
+    @media screen and (min-width: 1024px) {
+      padding-right: 10px;
+      width: calc(100% + 10px); 
+    }
+  }
+
+  .movie-card {
+    box-shadow: $base-shadow;
+    border-radius: $base-radius;
+    padding: 10px;
+    margin: 20px 0;
+    background: white;
+    display: flex;
+    gap: 10px;
+    flex-flow: column;
+    transition: all 0.3s linear;
+  }
+}
+
