@@ -20,17 +20,16 @@
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
-import { useQuery } from '@vue/apollo-composable'
 import { computed } from 'vue'
 import { CRAWL } from '@/queries/CrawlQuery'
 import Loader from '@/components/Loader.vue'
 
 const route = useRoute()
 const router = useRouter()
-
+/*
 const { result, loading, error } = useQuery(CRAWL(route.params.id))
 const crawl  = computed((): string => result.value?.film.openingCrawl ?? '')
-
+*/
 const back = () => {
   router.push({ name: 'movies' })
 }

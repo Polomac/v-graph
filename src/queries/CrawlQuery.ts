@@ -1,6 +1,4 @@
-import gql from 'graphql-tag'
-
-export const CRAWL = (id) => gql`
+export const CRAWL = (id = 1) => `
   query {
     film(id: "${id}") {
       openingCrawl

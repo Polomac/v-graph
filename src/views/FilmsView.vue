@@ -2,7 +2,7 @@
   <el-scrollbar height="90vh">
     <main class="wrapper">
       <h1>Movies</h1>
-      <Loader v-if="loading" :loading="loading" />
+      <Loader v-if="isFetching" :loading="isFetching" />
       <div class="movie-card" v-for="movie in  movies" :key="movie.id" @click="goToCrawl(movie.id)">
         <span><em>Title:</em> <h3 style="display: inline;">{{ movie.title }}</h3></span>
         <span><em>Released:</em> {{ movie.releaseDate }}</span>
@@ -13,17 +13,23 @@
 </template>
 
 <script setup lang="ts">
-import { useQuery } from '@vue/apollo-composable'
 import { computed } from 'vue'
 import { type IFilm, ALL_MOVIES } from '@/queries/MoviesQuery'
 import Loader from '@/components/Loader.vue'
 import { useRouter } from 'vue-router'
+import { useQuery } from 'villus';
 
 const router = useRouter()
+const { data, isFetching, onError } = useQuery({
+  query: ALL_MOVIES
+})
 
-const { result, loading, error } = useQuery(ALL_MOVIES)
+onError(error => {
+  console.log(error)
+})
 
-const movies = computed((): IFilm[] => result.value?.allFilms.films ?? [])
+const movies = computed((): IFilm[] => data.value?.allFilms.films ?? [])
+
 
 const goToCrawl = (id: string): void => {
   router.push({ name: 'crawl', params: { id: id }})

@@ -1,5 +1,3 @@
-import gql from 'graphql-tag'
-
 export interface ISpecie {
   name: string
   classification: string
@@ -18,7 +16,7 @@ export interface IFilm {
   }
 }
 
-export const ALL_MOVIES = gql`
+export const ALL_MOVIES = `
   query {
     allFilms {
       films {
