@@ -10,7 +10,7 @@
         </span>
       </h1>
       <div v-if="error">{{ error }} </div>
-      <Loader v-if="loading" :loading="loading" />
+      <Loader v-if="isFetching" :loading="isFetching" />
       <div class="movie-card">
         {{ crawl }}
       </div>
@@ -20,17 +20,25 @@
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
-import { useQuery } from '@vue/apollo-composable'
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { CRAWL } from '@/queries/CrawlQuery'
 import Loader from '@/components/Loader.vue'
-import gql from 'graphql-tag'
+import { useQuery } from 'villus'
 
-const route = useRoute()
 const router = useRouter()
+const route = useRoute()
 
-const { result, loading, error } = useQuery(CRAWL(route.params.id))
-const crawl: string  = computed(() => result.value?.film.openingCrawl ?? '')
+const error = ref<any>(null)
+
+const { data, isFetching, onError } = useQuery({
+  query: CRAWL,
+  variables: { filmId: route.params.id }
+})
+const crawl  = computed((): string => data.value?.film.openingCrawl ?? '')
+
+onError(err => {
+  error.value = err
+})
 
 const back = () => {
   router.push({ name: 'movies' })

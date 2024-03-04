@@ -12,13 +12,11 @@
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
-    "@apollo/client": "^3.9.5",
     "@element-plus/icons-vue": "^2.3.1",
-    "@vue/apollo-composable": "^4.0.1",
     "element-plus": "^2.6.0",
     "graphql": "^16.8.1",
-    "graphql-tag": "^2.12.6",
     "pinia": "^2.1.7",
+    "villus": "^3.4.0",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"
   },
