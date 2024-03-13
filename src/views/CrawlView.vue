@@ -2,7 +2,7 @@
   <el-scrollbar height="90vh">
     <main class="wrapper">
       <h1>Intro
-        <Button @action="back"/>
+        <Button @action="back" label="Back"/>
       </h1>
       <div v-if="error">{{ error }} </div>
       <Loader v-if="isFetching" :loading="isFetching" />

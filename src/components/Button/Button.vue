@@ -2,10 +2,10 @@
   <div class="default-button"
     @click="buttonClick"
     :class="{ 'primary': props.primary, 'rounded': props.rounded }">
-    <el-icon :size="12">
+    <el-icon :size="12" v-if="withIcon">
       <arrowLeftBold />
     </el-icon>
-    Back
+      {{ label }}
   </div>
 </template>
 
@@ -13,10 +13,13 @@
 interface Props {
   primary?: boolean
   rounded?: boolean
+  withIcon?: boolean
+  label: string,
 }
 const props = withDefaults(defineProps<Props>(), {
   primary: false,
   rounded: false,
+  withIcon: false,
 })
 
 const emit = defineEmits<{
@@ -42,6 +45,7 @@ const buttonClick = ():void => {
     align-items: center;
     transition: all 0.3s linear;
     gap: 4px;
+    width: fit-content;
     &:hover {
       background: lighten($dark-blue, 10%);
     }
