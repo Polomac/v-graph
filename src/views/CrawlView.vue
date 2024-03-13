@@ -2,12 +2,7 @@
   <el-scrollbar height="90vh">
     <main class="wrapper">
       <h1>Intro
-        <span @click="back">
-          <el-icon :size="12">
-            <arrowLeftBold />
-          </el-icon>
-          Back
-        </span>
+        <Button @action="back"/>
       </h1>
       <div v-if="error">{{ error }} </div>
       <Loader v-if="isFetching" :loading="isFetching" />
@@ -24,6 +19,7 @@ import { ref, computed } from 'vue'
 import { CRAWL } from '@/queries/CrawlQuery'
 import Loader from '@/components/Loader.vue'
 import { useQuery } from 'villus'
+import Button from '@/components/Button/Button.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -50,13 +46,5 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  span {
-    font-size: 16px;
-    color: $base-black;
-    cursor: pointer;
-    &:hover {
-      color: black;
-    }
-  }
 }
 </style>
