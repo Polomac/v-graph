@@ -18,6 +18,11 @@ const router = createRouter({
       name: 'crawl',
       component: () => import('../views/CrawlView.vue')
     },
+    {
+      path: '/flex-test',
+      name: 'flex-test',
+      component: () => import('../views/FlexTest.vue')
+    },
   ]
 })
 
