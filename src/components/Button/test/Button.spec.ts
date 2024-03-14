@@ -11,7 +11,7 @@ describe('Button', () => {
   test('Is the right color', () => {
     const primary = true
     const wrapper: any = mount(Button, {
-      props: { primary }
+      props: { primary, label: 'butt' }
     })
 
     expect(wrapper.classes()).toEqual(expect.arrayContaining(['primary']))
@@ -20,7 +20,7 @@ describe('Button', () => {
   test('Is rounded', () => {
     const rounded = true
     const wrapper: any = mount(Button, {
-      props: { rounded }
+      props: { rounded, label: 'butt' }
     })
 
     expect(wrapper.classes()).toEqual(expect.arrayContaining(['rounded']))
